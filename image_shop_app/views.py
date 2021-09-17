@@ -1,4 +1,3 @@
-import requests
 from django.shortcuts import render
 from django.conf import settings
 from decouple import config
