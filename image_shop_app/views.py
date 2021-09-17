@@ -1,3 +1,4 @@
+import requests
 from django.shortcuts import render
 from django.conf import settings
 from decouple import config
@@ -19,9 +20,19 @@ def search(request):
 
     response = requests.request("GET", url, headers=headers, data=payload)
 
-    print(response.text)
+    data = response.json()
+    thumb = data['results'][0]['urls']['thumb']
+    print(thumb)
+    context = {
+        'data': thumb
+    }
 
-    return render(request, 'pages/gallery.html')
+
+    return render(request, 'pages/gallery.html', context)
+
+def result(request):
+    if request.method == 'POST':
+        result_images = request.POST['']
 
 
 
