@@ -36,6 +36,6 @@ def search(request):
     # print(list_thumbs)
     return render(request, 'pages/gallery.html', context)
 
-# def result(request):
-#     if request.method == 'POST':
-#         result_images = request.POST['']
+def shopping_cart(request):
+    print(request.POST)
+    return render(request, 'pages/cart.html')

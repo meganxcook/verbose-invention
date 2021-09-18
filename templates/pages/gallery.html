@@ -1,10 +1,29 @@
 {% extends 'base.html' %} {% block content %}
 <h1>Gallery</h1>
 
+<div class="container mt-5">
+  <form action="{% url 'cart' %}" method="POST">
+    {% csrf_token %}
+    {% for photo in photos %}
+    <img src="{{ photo.thumb }}">
+    <span>ID: {{ photo.id }}</span>
+    <div class="form-group">
+      <label for="add">Add to cart: </label>
 
-{% for photo in photos %}
-  <img src="{{ photo.thumb }}"> <span>ID: {{ photo.id }}</span>
+      <input
+        type="checkbox"
+        id="{{ photo.id }}"
+        name="id"
+        value="{{ photo.id }}"
+      />
+    </div>
 
-{% endfor %}
+    {% endfor %}
+
+    <button type="submit" class="btn btn-primary">Add to cart</button>
+  </form>
+</div>
+
+
+
 {% endblock %}
-
