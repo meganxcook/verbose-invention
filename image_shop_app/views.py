@@ -10,8 +10,7 @@ def home(request):
 def search(request):
     UNSPLASH_KEY = config('UNSPLASH_KEY')
     # print("This is a search function")
-    print(request['post'])
-    url = f"https://api.unsplash.com/search/photos?page=1&query=office&per_page=3"
+    url = f"https://api.unsplash.com/search/photos?page=1&query={request.POST['search']}&per_page=3"
 
     payload={}
     headers = {
@@ -19,20 +18,24 @@ def search(request):
     }
 
     response = requests.request("GET", url, headers=headers, data=payload)
-    
-    data = response.json()
-    results = data['results'] 
-    list_thumbs = []
 
-    for thumb in results:
-        list_thumbs.append(thumb['urls']['thumb'])
-        
+    data = response.json()
+    photos = data['results']
+    list_photos = []
+
+    for photo in photos:
+        photo_dict = {}
+        photo_dict['id'] = photo['id']
+        photo_dict['thumb'] = photo['urls']['thumb']
+        list_photos.append(photo_dict)
+
+
     context = {
-        'thumbs': list_thumbs
+        'photos': list_photos
     }
     # print(list_thumbs)
     return render(request, 'pages/gallery.html', context)
 
-# def result(request):
-#     if request.method == 'POST':
-#         result_images = request.POST['']
+def shopping_cart(request):
+    print(request.POST)
+    return render(request, 'pages/cart.html')
