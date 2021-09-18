@@ -19,24 +19,20 @@ def search(request):
     }
 
     response = requests.request("GET", url, headers=headers, data=payload)
-
+    
     data = response.json()
-    thumb = data['results'][0]['urls']['thumb']
-    print(thumb)
+    results = data['results'] 
+    list_thumbs = []
+
+    for thumb in results:
+        list_thumbs.append(thumb['urls']['thumb'])
+        
     context = {
-        'data': thumb
+        'thumbs': list_thumbs
     }
-
-
+    # print(list_thumbs)
     return render(request, 'pages/gallery.html', context)
 
-def result(request):
-    if request.method == 'POST':
-        result_images = request.POST['']
-
-
-
-
-
-
-# Create your views here.
+# def result(request):
+#     if request.method == 'POST':
+#         result_images = request.POST['']
