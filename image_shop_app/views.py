@@ -10,8 +10,8 @@ def home(request):
 def search(request):
     UNSPLASH_KEY = config('UNSPLASH_KEY')
     # print("This is a search function")
-
-    url = "https://api.unsplash.com/search/photos?page=1&query=office"
+    print(request['post'])
+    url = f"https://api.unsplash.com/search/photos?page=1&query=office&per_page=3"
 
     payload={}
     headers = {
@@ -19,24 +19,20 @@ def search(request):
     }
 
     response = requests.request("GET", url, headers=headers, data=payload)
-
+    
     data = response.json()
-    thumb = data['results'][0]['urls']['thumb']
-    print(thumb)
+    results = data['results'] 
+    list_thumbs = []
+
+    for thumb in results:
+        list_thumbs.append(thumb['urls']['thumb'])
+        
     context = {
-        'data': thumb
+        'thumbs': list_thumbs
     }
-
-
+    # print(list_thumbs)
     return render(request, 'pages/gallery.html', context)
 
-def result(request):
-    if request.method == 'POST':
-        result_images = request.POST['']
-
-
-
-
-
-
-# Create your views here.
+# def result(request):
+#     if request.method == 'POST':
+#         result_images = request.POST['']
