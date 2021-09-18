@@ -10,8 +10,8 @@ def home(request):
 def search(request):
     UNSPLASH_KEY = config('UNSPLASH_KEY')
     # print("This is a search function")
-
-    url = "https://api.unsplash.com/search/photos?page=1&query=tree"
+    print(request['post'])
+    url = f"https://api.unsplash.com/search/photos?page=1&query=office&per_page=3"
 
     payload={}
     headers = {
