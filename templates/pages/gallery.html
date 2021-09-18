@@ -1,6 +1,10 @@
 {% extends 'base.html' %} {% block content %}
 <h1>Gallery</h1>
-<!-- {{ thumbs }} -->
 
-{% for thumb_url in thumbs %}
-<img src="{{ thumb_url }}"> {% endfor %} {% endblock %}
+
+{% for photo in photos %}
+  <img src="{{ photo.thumb }}"> <span>ID: {{ photo.id }}</span>
+
+{% endfor %}
+{% endblock %}
+

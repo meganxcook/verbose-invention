@@ -1,7 +1,7 @@
 {% extends 'base.html' %} {% block content %}
 <h1>Image Shop</h1>
 <div class="container mt-5">
-  <form action="{% url 'search' %}" method="POST">
+  <form action="{% url 'search'%}" method="POST">
     {% csrf_token %}
     <div class="form-group">
       <label for="search"></label>
