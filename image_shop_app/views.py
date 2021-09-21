@@ -2,7 +2,7 @@ import requests
 from django.shortcuts import render
 from django.conf import settings
 from decouple import config
-from .models import User, Images
+from .models import User, Image
 
 
 def home(request):
@@ -38,6 +38,11 @@ def search(request):
     return render(request, 'pages/gallery.html', context)
 
 def shopping_cart(request):
-    photos = Images.objects.all()
+    user = request.user
     print(request.POST)
-    return render(request, 'pages/cart.html', {'photos': photos})
+    images = request.POST['id']
+    print(images)
+    for image in images:
+        Image.objects.create(user=user, image_id=image, image_alt_description='text', image_url='test44')
+
+    return render(request, 'pages/cart.html')
