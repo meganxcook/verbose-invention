@@ -6,12 +6,20 @@
   <form action="{% url 'checkout' %}" method="POST">
     {% csrf_token %}
     {% for image in shopping_cart_images %}
-      <img src="{{ image.thumb_url }}">
-
     <div class="form-group">
-        <a href="{% url 'delete' image.id %}">
-          Delete
-        </a>
+      <img src="{{ image.thumb_url }}">
+      <label for="add">Purchase </label>
+
+      <input checked
+      type="checkbox"
+      id="{{ image.id }}"
+      name="id"
+      value="{{ image.id }}"
+      />
+
+      <a href="{% url 'delete' image.id %}">
+        Delete
+      </a>
     </div>
 
     {% endfor %}

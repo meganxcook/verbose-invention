@@ -62,12 +62,18 @@ def shopping_cart(request):
     return render(request, 'pages/cart.html', context)
 
 def checkout(request):
+    ids_of_purchased = request.POST.getlist('id')
+
+    for id in ids_of_purchased:
+        image = Image.objects.get(id=id)
+        image.cart_item = False
+        image.owned_item = True
+        image.save()
     return render(request, 'pages/checkout.html')
 
 def delete_image(request, id):
     print('id:', id)
     image = Image.objects.get(id=id)
-    print(image)
     image.delete()
     return redirect('cart')
 
