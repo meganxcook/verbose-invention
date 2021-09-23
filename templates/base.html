@@ -15,7 +15,10 @@
     <title>welcome</title>
   </head>
   <body>
-    <h1>Image Shop</h1>
+    <a class="navbar-brand" href="#">
+        <img src="https://iconape.com/wp-content/files/il/367359/png/367359.png" alt="" width="70" height="60">
+      </a> 
+    <h1>Aperture</h1>
 <div class="container mt-5">
   <form action="{% url 'search'%}" method="POST">
     {% csrf_token %}
