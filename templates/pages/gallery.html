@@ -18,13 +18,13 @@
     <div class="form-group col">
       <img src="{{ photo.thumb }}">
       <label for="add">Add to cart: </label>
-
       <input
         type="checkbox"
         id="{{ photo.id }}"
         name="id"
         value="{{ photo.id }}"
       />
+
     </div>
     {% if forloop.last %}
       </div>
