@@ -10,13 +10,3 @@ class Image(models.Model):
     image_alt_description = models.TextField()
     image_url = models.URLField()
     thumb_url = models.URLField()
-
-
-
-
-
-
-
-
-
-# Create your models here.
