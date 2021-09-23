@@ -6,24 +6,38 @@
   <form action="{% url 'checkout' %}" method="POST">
     {% csrf_token %}
     {% for image in shopping_cart_images %}
-    <div class="form-group">
-      <img src="{{ image.thumb_url }}">
-      <label for="add">Purchase </label>
 
-      <input checked
-      type="checkbox"
-      id="{{ image.id }}"
-      name="id"
-      value="{{ image.id }}"
-      />
+      {% if forloop.counter0|divisibleby:4 == True and forloop.counter0 != 0 %}
+        </div>
+      {% endif %}
 
-      <a href="{% url 'delete' image.id %}">
-        Delete
-      </a>
-    </div>
+      {% if forloop.counter0|divisibleby:4 == True %}
+        <div class="container-md row align-items-start">
 
+      {% endif %}
+      <div class="form-group col">
+        <img src="{{ image.thumb_url }}">
+        <label for="add">Purchase </label>
+
+        <input checked
+        type="checkbox"
+        id="{{ image.id }}"
+        name="id"
+        value="{{ image.id }}"
+        />
+
+        <a href="{% url 'delete' image.id %}">
+          Delete
+        </a>
+      </div>
+      {% if forloop.last %}
+        </div>
+      {% endif %}
     {% endfor %}
-    <button type='submit' class="btn btn-primary">Purchase Images</button>
+    <div>
+      <button type='submit' class="btn btn-primary">Purchase Images</button>
+
+    </div>
   </form>
 </div>
 

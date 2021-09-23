@@ -6,9 +6,17 @@
   <form action="{% url 'cart' %}" method="POST">
     {% csrf_token %}
     {% for photo in photos %}
-    <img src="{{ photo.thumb }}">
-    <span>ID: {{ photo.id }}</span>
-    <div class="form-group">
+    {% if forloop.counter0|divisibleby:4 and not forloop.first %}
+      </div>
+    {% endif %}
+
+    {% if forloop.counter0|divisibleby:4 %}
+      <div class="container-md row align-items-start">
+    {% endif %}
+
+
+    <div class="form-group col">
+      <img src="{{ photo.thumb }}">
       <label for="add">Add to cart: </label>
 
       <input
@@ -18,7 +26,9 @@
         value="{{ photo.id }}"
       />
     </div>
-
+    {% if forloop.last %}
+      </div>
+    {% endif %}
     {% endfor %}
 
     <button type="submit" class="btn btn-primary">Add to cart</button>
