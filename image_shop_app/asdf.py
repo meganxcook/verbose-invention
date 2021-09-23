@@ -1,1 +1,0 @@
-ACCESS_KEY = 'RQWcjdGX19KPMvScr9IxQjPcROzzuehlauLit_zSCHM'

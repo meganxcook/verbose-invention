@@ -15,6 +15,22 @@
     <title>welcome</title>
   </head>
   <body>
+    <h1>Image Shop</h1>
+<div class="container mt-5">
+  <form action="{% url 'search'%}" method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="search"></label>
+      <input
+        type="text"
+        name="search"
+        class="form-control"
+        placeholder="search"
+      />
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
     {% block content %} {% endblock %}
     <script src="{% static 'app.js' %}"></script>
     <script

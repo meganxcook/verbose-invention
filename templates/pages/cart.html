@@ -1,4 +1,31 @@
 {% extends 'base.html' %} {% block content %}
 <h1>Shopping Cart</h1>
 
+
+<div class="container mt-5">
+  <form action="{% url 'checkout' %}" method="POST">
+    {% csrf_token %}
+    {% for image in shopping_cart_images %}
+    <div class="form-group">
+      <img src="{{ image.thumb_url }}">
+      <label for="add">Purchase </label>
+
+      <input checked
+      type="checkbox"
+      id="{{ image.id }}"
+      name="id"
+      value="{{ image.id }}"
+      />
+
+      <a href="{% url 'delete' image.id %}">
+        Delete
+      </a>
+    </div>
+
+    {% endfor %}
+    <button type='submit' class="btn btn-primary">Purchase Images</button>
+  </form>
+</div>
+
+
 {% endblock %}
