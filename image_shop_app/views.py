@@ -2,7 +2,7 @@ import requests
 from django.shortcuts import redirect, render
 from django.conf import settings
 from decouple import config
-from .models import User, Image
+from .models import Image
 UNSPLASH_KEY = config('UNSPLASH_KEY')
 
 
@@ -11,7 +11,7 @@ def home(request):
 
 def search(request):
     # print("This is a search function")
-    url = f"https://api.unsplash.com/search/photos?page=1&query={request.POST['search']}&per_page=5"
+    url = f"https://api.unsplash.com/search/photos?page=1&query={request.POST['search']}&per_page=8"
 
     payload={}
     headers = {
