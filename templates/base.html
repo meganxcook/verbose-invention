@@ -14,16 +14,16 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-          <img src="https://iconape.com/wp-content/files/il/367359/png/367359.png" alt="" width="70" height="60">
-          </a>
+            <a class="navbar-brand" href="http://127.0.0.1:8000">
+                <img src="https://iconape.com/wp-content/files/il/367359/png/367359.png" alt="" width="70" height="60">
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active" aria-current="page" href="http://127.0.0.1:8000">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="http://127.0.0.1:8000/my_images/">My Images</a>
@@ -36,7 +36,7 @@
         </div>
     </nav>
 
-    <h1>Image Shop</h1>
+    <h1>Aperture</h1>
     <div class="container mt-5">
         <form action="{% url 'search'%}" method="POST">
             {% csrf_token %}
@@ -46,7 +46,7 @@
             </div>
             <button type="submit" class="btn btn-dark">Submit</button>
         </form>
-      
+
     </div>
     {% block content %} {% endblock %}
     <script src="{% static 'app.js' %}"></script>

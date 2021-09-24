@@ -77,5 +77,10 @@ def delete_image(request, id):
     image.delete()
     return redirect('cart')
 
-
+def my_images(request):
+    purchased = Image.objects.filter(owned_item = True)
+    context = {
+        'my_images': purchased
+    }
+    return render(request, 'pages/my_images.html', context)
 
