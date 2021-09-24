@@ -1,38 +1,28 @@
 {% extends 'base.html' %} {% block content %}
-<h1>Gallery</h1>
+<h2>Gallery</h2>
 
 
 <div class="container mt-5">
-  <form action="{% url 'cart' %}" method="POST">
-    {% csrf_token %}
-    {% for photo in photos %}
-    {% if forloop.counter0|divisibleby:4 and not forloop.first %}
-      </div>
-    {% endif %}
-
-    {% if forloop.counter0|divisibleby:4 %}
-      <div class="container-md row align-items-start">
+    <form action="{% url 'cart' %}" method="POST">
+        {% csrf_token %} {% for photo in photos %} {% if forloop.counter0|divisibleby:4 and not forloop.first %}
+</div>
+{% endif %} {% if forloop.counter0|divisibleby:4 %}
+<div class="container-md row align-items-start">
     {% endif %}
 
 
     <div class="form-group col">
-      <img src="{{ photo.thumb }}">
-      <label for="add">Add to cart: </label>
-      <input
-        type="checkbox"
-        id="{{ photo.id }}"
-        name="id"
-        value="{{ photo.id }}"
-      />
+        <img src="{{ photo.thumb }}">
+        <label for="add">Add to cart: </label>
+        <input type="checkbox" id="{{ photo.id }}" name="id" value="{{ photo.id }}" />
 
     </div>
     {% if forloop.last %}
-      </div>
-    {% endif %}
-    {% endfor %}
+</div>
+{% endif %} {% endfor %}
 
-    <button type="submit" class="btn btn-primary">Add to cart</button>
-  </form>
+<button type="submit" class="btn btn-dark m-4">Add to cart</button>
+</form>
 </div>
 
 
